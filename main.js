@@ -59,7 +59,8 @@ loader.load(
     document.getElementById("progress-container").style.display = "none";
   },
   (xhr) => {
-    console.log(`loading ${(xhr.loaded / xhr.total) * 100}%`);
+    document.getElementById("progress").innerHTML =
+      "Loading " + xhr.loaded / xhr.total * 100 + "%";
   },
   (error) => {
     console.error(error);
