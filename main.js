@@ -36,6 +36,11 @@ spotLight.castShadow = true;
 spotLight.shadow.bias = -0.0001;
 scene.add(spotLight);
 
+const path = window.location.pathname; // Lấy đường dẫn
+const parts = path.split('/'); // Tách đường dẫn thành mảng
+const lastPart = parts[parts.length - 1]; // Lấy phần cuối cùng
+console.log(lastPart); // In ra phần sau dấu /
+
 const loader = new GLTFLoader().setPath('./public/sqp_nv/');
 loader.load('scene.gltf', (gltf) => {
   console.log('loading model');
