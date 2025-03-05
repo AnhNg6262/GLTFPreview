@@ -26,13 +26,10 @@ camera.position.set(0, 25, 75);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.enablePan = false;
-controls.minDistance = 5;
-controls.maxDistance = 2000;
-controls.minPolarAngle = 0.5;
-controls.maxPolarAngle = 1.5;
+controls.enablePan = true;
+controls.maxDistance = 100;
 controls.autoRotate = false;
-controls.target = new THREE.Vector3(0, 1, 0);
+controls.target = new THREE.Vector3(0, 0, 0);
 controls.update();
 
 const light = new THREE.AmbientLight("#ffffff");
