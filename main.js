@@ -35,11 +35,8 @@ controls.autoRotate = false;
 controls.target = new THREE.Vector3(0, 1, 0);
 controls.update();
 
-const spotLight = new THREE.SpotLight(0xffffff, 300000, 1000, 0.22, 1);
-spotLight.position.set(80, 250, 50);
-spotLight.castShadow = true;
-spotLight.shadow.bias = -0.0001;
-scene.add(spotLight);
+const light = new THREE.AmbientLight("#ffffff");
+scene.add(light);
 
 const path = window.location.pathname,
   parts = path.split("/"),
