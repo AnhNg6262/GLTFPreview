@@ -1,6 +1,6 @@
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -16,7 +16,12 @@ document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+const camera = new THREE.PerspectiveCamera(
+  45,
+  window.innerWidth / window.innerHeight,
+  1,
+  1000
+);
 camera.position.set(0, 25, 75);
 
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -36,34 +41,38 @@ spotLight.castShadow = true;
 spotLight.shadow.bias = -0.0001;
 scene.add(spotLight);
 
-const path = window.location.pathname; // Lấy đường dẫn
-const parts = path.split('/'); // Tách đường dẫn thành mảng
-const lastPart = parts[parts.length - 1]; // Lấy phần cuối cùng
-console.log(lastPart); // In ra phần sau dấu /
+const path = window.location.pathname,
+  parts = path.split("/"),
+  lastPart = parts[parts.length - 1];
 
-const loader = new GLTFLoader().setPath('./public/sqp_nv/');
-loader.load('scene.gltf', (gltf) => {
-  console.log('loading model');
-  const mesh = gltf.scene;
+const loader = new GLTFLoader().setPath("./public/" + lastPart + "/");
+loader.load(
+  "scene.gltf",
+  (gltf) => {
+    console.log("loading model");
+    const mesh = gltf.scene;
 
-  mesh.traverse((child) => {
-    if (child.isMesh) {
-      child.castShadow = true;
-      child.receiveShadow = true;
-    }
-  });
+    mesh.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
 
-  mesh.position.set(0, 0, 0);
-  scene.add(mesh);
+    mesh.position.set(0, 0, 0);
+    scene.add(mesh);
 
-  document.getElementById('progress-container').style.display = 'none';
-}, (xhr) => {
-  console.log(`loading ${xhr.loaded / xhr.total * 100}%`);
-}, (error) => {
-  console.error(error);
-});
+    document.getElementById("progress-container").style.display = "none";
+  },
+  (xhr) => {
+    console.log(`loading ${(xhr.loaded / xhr.total) * 100}%`);
+  },
+  (error) => {
+    console.error(error);
+  }
+);
 
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
