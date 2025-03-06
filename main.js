@@ -33,8 +33,14 @@ controls.autoRotate = false;
 controls.target = new THREE.Vector3(0, 0, 0);
 controls.update();
 
-const light = new THREE.AmbientLight("#ffffff");
+const light = new THREE.DirectionalLight(0xffffff, 1.5);
+light.position.set(5, 10, 7); // Position the light
+light.castShadow = true; // Enable shadow casting
 scene.add(light);
+
+light.shadow.mapSize.width = 2048;
+light.shadow.mapSize.height = 2048;
+light.shadow.bias = -0.002;
 
 const geo = new THREE.PlaneGeometry(10000, 10000),
   mat = new THREE.MeshLambertMaterial(),
