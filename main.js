@@ -68,10 +68,10 @@ loader.load(
   },
   (xhr) => {
     document.getElementById("progress").innerHTML =
-      "Loading " + xhr.loaded / xhr.total * 100 + "%";
+      "Loading " + (xhr.loaded / xhr.total) * 100 + "%";
   },
   (error) => {
-    document.getElementById("progress").innerHTML = "Not found " + lastPart
+    document.getElementById("progress").innerHTML = "Not found " + lastPart;
   }
 );
 
@@ -85,9 +85,8 @@ function animate() {
   requestAnimationFrame(animate);
   controls.update();
 
-  if (camera.position.y < 1) {
-    camera.position.y = 1;
-  }
+  if (camera.position.y < 1) camera.position.y = 1;
+  if (controls.target.y < 1) controls.target.y = 1;
 
   renderer.render(scene, camera);
 }
