@@ -56,7 +56,7 @@ const path = window.location.pathname,
   parts = path.split("/"),
   lastPart = parts[parts.length - 1];
 
-const loader = new GLTFLoader().setPath("./public/sqp_v/");
+const loader = new GLTFLoader().setPath("./public/" + lastPart + "/");
 loader.load(
   "scene.gltf",
   (gltf) => {
