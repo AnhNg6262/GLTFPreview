@@ -33,12 +33,12 @@ controls.autoRotate = false;
 controls.target = new THREE.Vector3(0, 0, 0);
 controls.update();
 
-const light = new THREE.DirectionalLight(0xffffff, 1);
+const light = new THREE.DirectionalLight(0xffffff, 2);
 light.position.set(5, 10, 7);
 light.castShadow = true;
 scene.add(light);
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.25);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambientLight);
 
 light.shadow.mapSize.width = 2048;
