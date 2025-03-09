@@ -33,10 +33,13 @@ controls.autoRotate = false;
 controls.target = new THREE.Vector3(0, 0, 0);
 controls.update();
 
-const light = new THREE.DirectionalLight(0xffffff, 1.5);
+const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(5, 10, 7);
 light.castShadow = true;
 scene.add(light);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.25);
+scene.add(ambientLight);
 
 light.shadow.mapSize.width = 2048;
 light.shadow.mapSize.height = 2048;
@@ -53,7 +56,7 @@ const path = window.location.pathname,
   parts = path.split("/"),
   lastPart = parts[parts.length - 1];
 
-const loader = new GLTFLoader().setPath("./public/" + lastPart + "/");
+const loader = new GLTFLoader().setPath("./public/sqp_v/");
 loader.load(
   "scene.gltf",
   (gltf) => {
