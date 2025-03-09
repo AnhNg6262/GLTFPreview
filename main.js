@@ -34,8 +34,8 @@ controls.target = new THREE.Vector3(0, 0, 0);
 controls.update();
 
 const light = new THREE.DirectionalLight(0xffffff, 1.5);
-light.position.set(5, 10, 7); // Position the light
-light.castShadow = true; // Enable shadow casting
+light.position.set(5, 10, 7);
+light.castShadow = true;
 scene.add(light);
 
 light.shadow.mapSize.width = 2048;
